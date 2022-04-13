@@ -2,6 +2,10 @@ export interface MovieData {
   id: number;
   title: string;
   medium_cover_image: string;
+  background_image: string;
+  rating: number;
+  runtime: number;
+  genres: string[];
 }
 
 export const getMovies = async () => {
