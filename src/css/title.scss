@@ -1,0 +1,25 @@
+.title {
+  justify-content: center;
+  padding: 3rem;
+  margin: 1rem 0;
+  background-color: rgba(255, 255, 255, 0.24);
+  color: white;
+  align-items: center;
+  display: flex;
+  font-size: 5rem;
+  font-family: "Montserrat", sans-serif;
+  // animation: fade-in 2s ease-in-out;
+  strong {
+    color: red;
+    padding-right: 2rem;
+  }
+  img {
+    width: 7rem;
+  }
+}
+
+// @keyframes fade-in {
+//   0% {
+//     opacity: 0;
+//   }
+// }
