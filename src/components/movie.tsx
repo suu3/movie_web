@@ -1,12 +1,20 @@
 import React from "react";
 import { MovieData } from "./data";
+import { useNavigate } from "react-router-dom";
 
 interface MovieProps {
   movie: MovieData;
 }
+interface LinkState {
+  title: string;
+}
 const Movie: React.FC<MovieProps> = ({ movie }) => {
+  const history = useNavigate();
+  const onClick = () => {
+    history(`{/${movie.id}/detail}`, { state: { title: movie.title } });
+  };
   return (
-    <li className="movie">
+    <li className="movie" onClick={onClick}>
       <div
         className="movie_item"
         style={{
