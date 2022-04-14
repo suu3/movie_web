@@ -16,7 +16,7 @@ const Home: React.FC = () => {
   }, []);
 
   return (
-    <>{loading ? <Loading /> : <Carousel movies={movies.slice(0, 8)} />}</>
+    <>{loading ? <Loading /> : <Carousel movies={movies.slice(0, 10)} />}</>
   );
 };
 

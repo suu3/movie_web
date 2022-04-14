@@ -1,3 +1,72 @@
+.carousel-wrap {
+  padding-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.leftArrow {
+  color: white;
+  font-size: 3rem;
+  margin-right: 2rem;
+}
+.rightArrow {
+  color: white;
+  font-size: 3rem;
+  margin-left: 2rem;
+}
+.rightArrow:hover,
+.leftArrow:hover {
+  color: red;
+  cursor: pointer;
+}
+.carousel-container {
+  position: relative;
+  width: 87rem;
+}
+
+$level3-width: 8rem;
+$level2-width: 12rem;
+$level1-width: 16rem;
+$level0-width: 20rem;
+
+$level2-height: 200px;
+$level1-height: 180px;
+$level0-height: 200px;
+
+$level-2-left: 650px;
+$level-1-left: 500px;
+$level0-left: 330px;
+$level1-left: 180px;
+$level2-left: 50px;
+
 .carousel {
   color: white;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+
+  li {
+    transform: translateX(-$level3-width - 4.5rem);
+    list-style: none;
+    margin: 0 1rem;
+    img {
+      width: $level3-width;
+    }
+  }
+  li:nth-child(2) img {
+    width: $level2-width;
+  }
+  li:nth-child(3) img {
+    width: $level1-width;
+  }
+  li:nth-child(4) img {
+    width: $level0-width;
+  }
+  li:nth-child(5) img {
+    width: $level1-width;
+  }
+  li:nth-child(6) img {
+    width: $level2-width;
+  }
 }
