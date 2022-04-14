@@ -6,6 +6,7 @@ export interface MovieData {
   rating: number;
   runtime: number;
   genres: string[];
+  summary: string;
 }
 
 export const getMovies = async () => {

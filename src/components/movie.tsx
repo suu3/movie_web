@@ -1,6 +1,12 @@
 import React from "react";
 import { MovieData } from "./data";
 import { useNavigate } from "react-router-dom";
+import {
+  AiFillStar,
+  AiOutlineFileText,
+  AiOutlineFieldTime,
+} from "react-icons/ai";
+import { BiCategoryAlt } from "react-icons/bi";
 
 interface MovieProps {
   movie: MovieData;
@@ -25,12 +31,41 @@ const Movie: React.FC<MovieProps> = ({ movie }) => {
         <img alt="poster" src={movie.medium_cover_image} />
         <div className="texts">
           <h2>{movie.title}</h2>
-          <p>{movie.rating}</p>
-          <p>{movie.runtime}</p>
-          <p>
-            {movie.genres.map((genre: string) => (
-              <div>{genre}</div>
-            ))}
+          <p className="row">
+            <label className="label">
+              <AiFillStar style={{ marginRight: ".2rem" }} />
+              Rating
+            </label>
+            {movie.rating}
+          </p>
+          <p className="row">
+            <label className="label">
+              <AiOutlineFieldTime style={{ marginRight: ".2rem" }} />
+              Running Time
+            </label>
+            {movie.runtime}
+          </p>
+          <p className="row">
+            <label className="label">
+              <BiCategoryAlt style={{ marginRight: ".2rem" }} />
+              Genres
+            </label>
+            <ul>
+              {movie.genres.map((genre: string) => (
+                <li>{genre}</li>
+              ))}
+            </ul>
+          </p>
+          <p className="row">
+            <label className="label">
+              <AiOutlineFileText style={{ marginRight: ".2rem" }} />
+              Summary
+            </label>
+          </p>
+          <p className="row">
+            {movie.summary.length > 180
+              ? movie.summary.slice(0, 180) + "..."
+              : movie.summary}
           </p>
         </div>
       </div>
