@@ -13,7 +13,7 @@ const List: React.FC = () => {
     setLoading(false);
   }
   const [page, setPage] = useState(1);
-  const handlePageChange = (page) => {
+  const handlePageChange = (page: number) => {
     setPage(page);
   };
 
