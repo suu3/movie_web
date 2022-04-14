@@ -1,20 +1,28 @@
 import React, { useState, useEffect } from "react";
 import "../css/search.scss";
 import { AiOutlineSearch } from "react-icons/ai";
-import { SearchData, searchMovies } from "./data";
+import { SearchData, searchMovies } from "../API/data";
 import Loading from "./loading";
 
 const Search = () => {
   const [movies, setMovies] = useState<SearchData[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [totalCount, setTotalCount] = useState<number>(0);
+  const [query, setQuery] = useState<string>("");
   async function getAPI() {
-    console.log(await searchMovies());
+    const result = await searchMovies(query);
+    setMovies(result.movieList);
+    setTotalCount(result.totCnt);
     setLoading(false);
   }
-
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.currentTarget.value);
+  };
   useEffect(() => {
+    if (query === "") return;
+
     getAPI();
-  }, []);
+  }, [query]);
   return (
     <>
       <div className="search">
@@ -22,6 +30,7 @@ const Search = () => {
           query input
         </label>
         <input
+          onChange={onChange}
           name="query"
           placeholder="Enter Movie Title.."
           maxLength={30}
@@ -31,7 +40,13 @@ const Search = () => {
           style={{ transform: "translateX(-130%)", fontSize: "2.5rem" }}
         />
       </div>
-      {/* {loading ? <Loading /> : <div>{movies[0].title}</div>} */}
+      {query === "" || totalCount === 0 ? (
+        <div className="nothing">There is no result.</div>
+      ) : loading ? (
+        <Loading />
+      ) : (
+        <div style={{ color: "white" }}>{totalCount}</div>
+      )}
     </>
   );
 };

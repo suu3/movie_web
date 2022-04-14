@@ -1,5 +1,5 @@
 import React from "react";
-import { MovieData } from "./data";
+import { MovieData } from "../API/data";
 import "../css/carousel.scss";
 
 interface CarouselProps {

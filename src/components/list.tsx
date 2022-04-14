@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Movies from "./movies";
 import Loading from "./loading";
-import { MovieData, getMovies } from "./data";
+import { MovieData, getMovies } from "../API/data";
 
 const List: React.FC = () => {
   const [movies, setMovies] = useState<MovieData[]>([]);
