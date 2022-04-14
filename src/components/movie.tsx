@@ -45,17 +45,17 @@ const Movie: React.FC<MovieProps> = ({ movie }) => {
             </label>
             {movie.runtime}
           </p>
-          <p className="row">
+          <div className="row">
             <label className="label">
               <BiCategoryAlt style={{ marginRight: ".2rem" }} />
               Genres
             </label>
             <ul>
-              {movie.genres.map((genre: string) => (
-                <li>{genre}</li>
+              {movie.genres.map((genre: string, index: number) => (
+                <li key={index}>{genre}</li>
               ))}
             </ul>
-          </p>
+          </div>
           <p className="row">
             <label className="label">
               <AiOutlineFileText style={{ marginRight: ".2rem" }} />
