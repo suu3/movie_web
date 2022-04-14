@@ -1,28 +1,36 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import "../css/search.scss";
 import { AiOutlineSearch } from "react-icons/ai";
 import { SearchData, searchMovies } from "../API/data";
 import Loading from "./loading";
+import { BiCalendarStar } from "react-icons/bi";
 
 const Search = () => {
+  const [range, setRange] = useState<string>("");
+  const [ready, setReady] = useState<boolean>(true);
   const [movies, setMovies] = useState<SearchData[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [totalCount, setTotalCount] = useState<number>(0);
-  const [query, setQuery] = useState<string>("");
-  async function getAPI() {
-    const result = await searchMovies(query);
-    setMovies(result.movieList);
-    setTotalCount(result.totCnt);
+  const inputRef = useRef<HTMLInputElement>(null!);
+  async function getAPI(text: string) {
+    const result = await searchMovies(text);
+    if (result === undefined) {
+      setReady(true);
+      return;
+    }
+    setMovies(result.dailyBoxOfficeList);
+    setRange(result.showRange);
     setLoading(false);
   }
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.currentTarget.value);
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      const text = inputRef.current?.value;
+      if (text === "") return;
+      setReady(false);
+      setLoading(true);
+      getAPI(text);
+      inputRef.current.value = "";
+    }
   };
-  useEffect(() => {
-    if (query === "") return;
-
-    getAPI();
-  }, [query]);
   return (
     <>
       <div className="search">
@@ -30,9 +38,10 @@ const Search = () => {
           query input
         </label>
         <input
-          onChange={handleInputChange}
+          ref={inputRef}
+          onKeyPress={handleKeyPress}
           name="query"
-          placeholder="Enter Movie Title.."
+          placeholder="box office ranking of 'yyyymmdd'"
           maxLength={30}
         ></input>
 
@@ -40,12 +49,38 @@ const Search = () => {
           style={{ transform: "translateX(-130%)", fontSize: "2.5rem" }}
         />
       </div>
-      {query === "" || totalCount === 0 ? (
+      {ready ? (
         <div className="nothing">There is no result.</div>
       ) : loading ? (
         <Loading />
       ) : (
-        <div style={{ color: "white" }}>{totalCount}</div>
+        <>
+          <div className="show-range">
+            <BiCalendarStar style={{ marginRight: ".8rem" }} />
+            {range}
+            <BiCalendarStar style={{ marginLeft: ".8rem" }} />
+          </div>
+          <ul className="search-ul">
+            {movies.map((movie) => {
+              return (
+                <li className="search-movie">
+                  <div className="ranking">{movie.rank}</div>
+                  <div className="movie-info">
+                    <h4>{movie.movieNm}</h4>
+                    <div>
+                      <label>Open Date</label>
+                      <div>{movie.openDt}</div>
+                      <label>Audience Count</label>
+                      <div>{movie.audiCnt}</div>
+                      <label>Sales Count</label>
+                      <div>{movie.salesAcc}</div>
+                    </div>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </>
       )}
     </>
   );

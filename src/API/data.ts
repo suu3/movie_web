@@ -24,28 +24,44 @@ export const getMovies = async (sortBy: string = "rating") => {
 };
 
 export interface SearchData {
+  rank: string;
   movieNm: string;
-  prdtYear: string;
-  repGenreNm: string;
+  openDt: string;
+  audiCnt: string;
+  salesAcc: string;
 }
 
-export const searchMovies = async (search: string) => {
+// export const searchMovies = async (search: string) => {
+//   const {
+//     data: { movieListResult },
+//   } = await axios.get(
+//     "https://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json",
+//     {
+//       params: {
+//         curPage: 1,
+//         itemPerPage: 20,
+//         key: process.env.REACT_APP_API_KEY,
+//         movieNm: search,
+//       },
+//     }
+//   );
+//   return movieListResult;
+// };
+export const searchMovies = async (date: string) => {
   const {
-    data: { movieListResult },
+    data: { boxOfficeResult },
   } = await axios.get(
-    "https://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json",
+    "http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json",
     {
       params: {
-        curPage: 1,
         itemPerPage: 20,
         key: process.env.REACT_APP_API_KEY,
-        movieNm: search,
+        targetDt: date,
       },
     }
   );
-  return movieListResult;
+  return boxOfficeResult;
 };
-
 // export const searchMovies = async () => {
 //   const url = `https://cors.bridged.cc/https://yts.torrentbay.to/api/v2/movie_details.json?movie_id=37384`;
 //   try {

@@ -2,11 +2,8 @@ import React from "react";
 import "../css/header.scss";
 import styled from "styled-components";
 import { Link, useLocation } from "react-router-dom";
-import {
-  AiFillHome,
-  AiOutlineUnorderedList,
-  AiOutlineSearch,
-} from "react-icons/ai";
+import { AiFillHome, AiOutlineUnorderedList } from "react-icons/ai";
+import { BiTrophy } from "react-icons/bi";
 
 interface ListProps {
   readonly isActive: boolean;
@@ -38,7 +35,7 @@ const Header: React.FC = () => {
       </Link>
       <Link to="/search">
         <List isActive={pathname === "/search"}>
-          <AiOutlineSearch style={{ marginRight: ".3rem" }} /> Search
+          <BiTrophy style={{ marginRight: ".3rem" }} /> Box Office
         </List>
       </Link>
     </ul>
