@@ -22,17 +22,17 @@ const Carousel: React.FC<CarouselProps> = (props) => {
     setMovies(updateMovies);
   };
   const handleMouseOver = (e: React.MouseEvent<HTMLImageElement>) => {
-    e.currentTarget.style.opacity = "70%";
+    e.currentTarget.style.opacity = "60%";
     e.currentTarget.style.cursor = "pointer";
+    e.currentTarget.style.zIndex = "-2";
     const url = e.currentTarget.dataset["url"];
-    console.log(url);
-    console.log(backgroundDiv.current);
     if (backgroundDiv.current !== null) {
       backgroundDiv.current.style.background = `no-repeat center/130% url(${url})`;
     }
   };
   const handleMouseOut = (e: React.MouseEvent<HTMLImageElement>) => {
     e.currentTarget.style.opacity = "100%";
+    e.currentTarget.style.zIndex = "2";
     if (backgroundDiv.current !== null) {
       backgroundDiv.current.style.background = "none";
     }
@@ -51,6 +51,7 @@ const Carousel: React.FC<CarouselProps> = (props) => {
             movies.map((movie: MovieData, index: number) => {
               return (
                 <li key={index}>
+                  <div className="movie-title">{movie.title}</div>
                   <img
                     data-url={movie.background_image}
                     onMouseOver={handleMouseOver}

@@ -70,3 +70,15 @@ $level2-left: 50px;
     width: $level2-width;
   }
 }
+
+.movie-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  top: 5rem;
+  left: 1rem;
+  position: absolute;
+  z-index: -1;
+  color: white;
+  text-shadow: -2px 0 #000, 0 2px #000, 2px 0 #000, 0 -2px #000;
+  text-align: center;
+}

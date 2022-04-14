@@ -5,12 +5,19 @@ import Header from "./components/header";
 import List from "./components/list";
 import Title from "./components/title";
 import Search from "./components/search";
+import { Animate } from "react-simple-animate";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <>
-      <Title />
+      <Animate
+        play={true}
+        end={{ opacity: 1, filter: "blur(0)" }}
+        start={{ opacity: 0, filter: "blur(10px)" }}
+      >
+        <Title />
+      </Animate>
       <BrowserRouter>
         <Header />
         <Routes>
