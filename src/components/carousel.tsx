@@ -2,10 +2,13 @@ import React, { useState, useEffect } from "react";
 import { MovieData } from "../API/data";
 import "../css/carousel.scss";
 import { BiChevronLeftCircle, BiChevronRightCircle } from "react-icons/bi";
+import styled from "styled-components";
+import { cursorTo } from "readline";
 
 interface CarouselProps {
   movies: MovieData[];
 }
+
 const Carousel: React.FC<CarouselProps> = (props) => {
   const handleLeftArrow = () => {
     const updateMovies = [...movies];
@@ -19,6 +22,14 @@ const Carousel: React.FC<CarouselProps> = (props) => {
     updateMovies.unshift(element);
     setMovies(updateMovies);
   };
+  const handleMouseOver = (e: React.MouseEvent<HTMLImageElement>) => {
+    e.currentTarget.style.opacity = "50%";
+    e.currentTarget.style.cursor = "pointer";
+  };
+  const handleMouseOut = (e: React.MouseEvent<HTMLImageElement>) => {
+    e.currentTarget.style.opacity = "100%";
+  };
+
   const [movies, setMovies] = useState<MovieData[]>([]);
   useEffect(() => {
     setMovies(props.movies);
@@ -32,7 +43,12 @@ const Carousel: React.FC<CarouselProps> = (props) => {
             movies.map((movie: MovieData, index: number) => {
               return (
                 <li key={index}>
-                  <img alt="poster" src={movie.medium_cover_image} />
+                  <img
+                    onMouseOver={handleMouseOver}
+                    onMouseOut={handleMouseOut}
+                    alt="poster"
+                    src={movie.medium_cover_image}
+                  />
                 </li>
               );
             })}

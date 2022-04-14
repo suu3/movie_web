@@ -20,7 +20,7 @@ const List = styled.li<ListProps>`
   padding: 0.2rem 3rem;
   color: ${(props) => (props.isActive ? "red" : "white")};
 `;
-const Header = () => {
+const Header: React.FC = () => {
   const { pathname } = useLocation();
   return (
     <ul className="header">

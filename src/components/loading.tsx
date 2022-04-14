@@ -1,7 +1,7 @@
 import React from "react";
 import "../css/loading.scss";
 
-const Loading = () => (
+const Loading: React.FC = () => (
   <div className="loading">
     <div></div>
   </div>
