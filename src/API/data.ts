@@ -9,6 +9,7 @@ export interface MovieData {
   runtime: number;
   genres: string[];
   summary: string;
+  description_full: string;
 }
 
 export const getMovies = async (sortBy: string = "rating") => {

@@ -13,11 +13,22 @@ interface MovieProps {
 }
 const Movie: React.FC<MovieProps> = ({ movie }) => {
   const history = useNavigate();
-  const onClick = () => {
-    history(`{/${movie.id}/detail}`, { state: { title: movie.title } });
+  const handleClick = () => {
+    history(`/${movie.id}/detail`, {
+      state: {
+        title: movie.title,
+        description_full: movie.description_full,
+        medium_cover_image: movie.medium_cover_image,
+        background_image:
+          movie.background_image === null ? null : movie.background_image,
+        rating: movie.rating,
+        runtime: movie.runtime,
+        genres: movie.genres,
+      },
+    });
   };
   return (
-    <li className="movie" onClick={onClick}>
+    <li className="movie" onClick={handleClick}>
       <div
         className="movie_item"
         style={{

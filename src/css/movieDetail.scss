@@ -1,0 +1,116 @@
+.movieDetail {
+  color: white;
+  margin: 2rem 10rem;
+  list-style: none;
+  .movie_item {
+    &::before {
+      content: "";
+      z-index: -1;
+      opacity: 0.7;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      right: 0px;
+      bottom: 0px;
+      background-color: rgb(0, 0, 0);
+    }
+
+    display: flex;
+    align-items: center;
+    padding: 2rem 1rem;
+    border-radius: 1rem;
+    .texts {
+      padding-left: 2rem;
+    }
+    h2 {
+      font-size: 2rem;
+    }
+    img {
+      padding-left: 3rem;
+    }
+
+    .row {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      font-size: 1.3rem;
+      padding-bottom: 0.4rem;
+      padding-right: 3rem;
+
+      .label {
+        display: flex;
+        align-items: center;
+        font-weight: 600;
+        width: 14rem;
+        color: rgb(201, 0, 0);
+      }
+
+      ul {
+        display: flex;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+        flex-wrap: wrap;
+      }
+      ul li {
+        margin-right: 0.5rem;
+        list-style: none;
+      }
+    }
+  }
+}
+
+.comment {
+  .comment-list {
+    margin-bottom: 8rem;
+    color: white;
+    li {
+      list-style: none;
+      font-size: 1.8rem;
+      padding-bottom: 0.5rem;
+      justify-content: space-between;
+      align-items: center;
+      display: flex;
+      padding-right: 3rem;
+
+      .trash {
+        margin-left: 1rem;
+        transition: all 2ms ease-in-out;
+      }
+      .trash:hover {
+        color: red;
+        cursor: pointer;
+      }
+    }
+  }
+  margin: 0 10rem;
+  .comment-title {
+    color: white;
+    font-size: 3rem;
+    font-weight: 600;
+  }
+  .input-row {
+    margin: 1rem;
+    display: flex;
+    textarea {
+      padding: 1rem;
+      font-size: 1.5rem;
+      flex-basis: 100%;
+      margin-right: 0.5rem;
+    }
+    button {
+      font-size: 4rem;
+      width: 8rem;
+      background-color: rgb(255, 131, 131);
+      outline: none;
+    }
+    button:hover {
+      background-color: rgb(255, 0, 0);
+      cursor: pointer;
+    }
+  }
+  .border {
+    width: 100%;
+    border-bottom: 0.1rem solid white;
+  }
+}

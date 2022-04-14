@@ -2,12 +2,29 @@ import React, { useState, useEffect, useRef } from "react";
 import { MovieData } from "../API/data";
 import "../css/carousel.scss";
 import { BiChevronLeftCircle, BiChevronRightCircle } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
 
 interface CarouselProps {
   movies: MovieData[];
 }
 
 const Carousel: React.FC<CarouselProps> = (props) => {
+  const history = useNavigate();
+  const handleClick = (movie: MovieData) => {
+    history(`/${movie.id}/detail`, {
+      state: {
+        title: movie.title,
+        medium_cover_image: movie.medium_cover_image,
+        background_image:
+          movie.background_image === null ? null : movie.background_image,
+        rating: movie.rating,
+        runtime: movie.runtime,
+        genres: movie.genres,
+        description_full: movie.description_full,
+      },
+    });
+  };
+
   const backgroundDiv = useRef<HTMLDivElement>(null);
   const handleLeftArrow = () => {
     const updateMovies = [...movies];
@@ -50,7 +67,7 @@ const Carousel: React.FC<CarouselProps> = (props) => {
           {movies &&
             movies.map((movie: MovieData, index: number) => {
               return (
-                <li key={index}>
+                <li key={index} onClick={() => handleClick(movie)}>
                   <div className="movie-title">{movie.title}</div>
                   <img
                     data-url={movie.background_image}
