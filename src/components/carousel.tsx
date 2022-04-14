@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { MovieData } from "../API/data";
 import "../css/carousel.scss";
 import { BiChevronLeftCircle, BiChevronRightCircle } from "react-icons/bi";
-import styled from "styled-components";
-import { cursorTo } from "readline";
 
 interface CarouselProps {
   movies: MovieData[];
 }
 
 const Carousel: React.FC<CarouselProps> = (props) => {
+  const backgroundDiv = useRef<HTMLDivElement>(null);
   const handleLeftArrow = () => {
     const updateMovies = [...movies];
     const element = updateMovies.shift() as MovieData;
@@ -23,11 +22,20 @@ const Carousel: React.FC<CarouselProps> = (props) => {
     setMovies(updateMovies);
   };
   const handleMouseOver = (e: React.MouseEvent<HTMLImageElement>) => {
-    e.currentTarget.style.opacity = "50%";
+    e.currentTarget.style.opacity = "70%";
     e.currentTarget.style.cursor = "pointer";
+    const url = e.currentTarget.dataset["url"];
+    console.log(url);
+    console.log(backgroundDiv.current);
+    if (backgroundDiv.current !== null) {
+      backgroundDiv.current.style.background = `no-repeat center/130% url(${url})`;
+    }
   };
   const handleMouseOut = (e: React.MouseEvent<HTMLImageElement>) => {
     e.currentTarget.style.opacity = "100%";
+    if (backgroundDiv.current !== null) {
+      backgroundDiv.current.style.background = "none";
+    }
   };
 
   const [movies, setMovies] = useState<MovieData[]>([]);
@@ -35,7 +43,7 @@ const Carousel: React.FC<CarouselProps> = (props) => {
     setMovies(props.movies);
   }, []);
   return (
-    <div className="carousel-wrap">
+    <div className="carousel-wrap" ref={backgroundDiv}>
       <BiChevronLeftCircle onClick={handleLeftArrow} className="leftArrow" />
       <div className="carousel-container">
         <ul className="carousel">
@@ -44,6 +52,7 @@ const Carousel: React.FC<CarouselProps> = (props) => {
               return (
                 <li key={index}>
                   <img
+                    data-url={movie.background_image}
                     onMouseOver={handleMouseOver}
                     onMouseOut={handleMouseOut}
                     alt="poster"
