@@ -24,6 +24,8 @@ export const getMovies = async () => {
 
 export interface SearchData {
   movieNm: string;
+  prdtYear: string;
+  repGenreNm: string;
 }
 
 export const searchMovies = async (search: string) => {
