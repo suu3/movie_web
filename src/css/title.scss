@@ -2,7 +2,24 @@
   justify-content: center;
   padding: 3rem;
   margin: 1rem 0;
-  background-color: rgba(255, 255, 255, 0.24);
+  position: relative;
+  &::after {
+    content: "";
+    background: no-repeat center/100%
+      // url("https://cdn.pixabay.com/photo/2019/02/10/09/51/photographer-3986846_960_720.jpg");
+      // url("https://cdn.pixabay.com/photo/2020/02/27/18/54/popcorn-4885565_960_720.jpg");
+      url("https://cdn.pixabay.com/photo/2019/11/07/20/48/cinema-4609877_960_720.jpg");
+    object-fit: cover;
+    opacity: 0.2;
+    z-index: -3;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+  }
+
+  // background-color: rgba(29, 29, 29, 0.849);
   color: white;
   align-items: center;
   display: flex;

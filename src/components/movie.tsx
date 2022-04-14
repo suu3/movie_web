@@ -5,9 +5,6 @@ import { useNavigate } from "react-router-dom";
 interface MovieProps {
   movie: MovieData;
 }
-interface LinkState {
-  title: string;
-}
 const Movie: React.FC<MovieProps> = ({ movie }) => {
   const history = useNavigate();
   const onClick = () => {
@@ -18,7 +15,7 @@ const Movie: React.FC<MovieProps> = ({ movie }) => {
       <div
         className="movie_item"
         style={{
-          background: `url(${movie.background_image})`,
+          background: `no-repeat center/130% url(${movie.background_image})`,
           backgroundRepeat: "no-repeat",
           objectFit: "cover",
           zIndex: -2,
