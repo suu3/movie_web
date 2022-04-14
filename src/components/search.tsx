@@ -15,7 +15,7 @@ const Search = () => {
     setTotalCount(result.totCnt);
     setLoading(false);
   }
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.currentTarget.value);
   };
   useEffect(() => {
@@ -30,7 +30,7 @@ const Search = () => {
           query input
         </label>
         <input
-          onChange={onChange}
+          onChange={handleInputChange}
           name="query"
           placeholder="Enter Movie Title.."
           maxLength={30}

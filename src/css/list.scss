@@ -1,3 +1,24 @@
+.sort_by {
+  label {
+    color: red;
+    font-size: 1.5rem;
+    font-weight: 600;
+
+    padding-right: 1rem;
+  }
+  margin-top: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  select {
+    padding: 0.5rem 3rem;
+    border-radius: 2rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    border: 0.3rem solid red;
+  }
+}
+
 .movie-list {
   margin: 3rem 0;
   .pagination {

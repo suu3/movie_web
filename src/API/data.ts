@@ -11,8 +11,8 @@ export interface MovieData {
   summary: string;
 }
 
-export const getMovies = async () => {
-  const url = "https://yts-proxy.now.sh/list_movies.json?sort_by=rating";
+export const getMovies = async (sortBy: string = "rating") => {
+  const url = `https://yts-proxy.now.sh/list_movies.json?sort_by=${sortBy}`;
   try {
     const response = await fetch(url);
     const movie_data = await response.json();
