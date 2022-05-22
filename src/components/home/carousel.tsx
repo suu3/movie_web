@@ -9,6 +9,8 @@ interface CarouselProps {
 }
 
 const Carousel: React.FC<CarouselProps> = (props) => {
+  const [isMouseOver, setIsMouseOver] = useState<boolean[]>();
+  const [backgroundUrl, setBackgroundUrl] = useState<string>("");
   const history = useNavigate();
   const handleClick = (movie: MovieData) => {
     history(`/${movie.id}/detail`, {
@@ -25,7 +27,6 @@ const Carousel: React.FC<CarouselProps> = (props) => {
     });
   };
 
-  const backgroundDiv = useRef<HTMLDivElement>(null);
   const handleLeftArrow = () => {
     const updateMovies = [...movies];
     const element = updateMovies.shift() as MovieData;
@@ -38,29 +39,42 @@ const Carousel: React.FC<CarouselProps> = (props) => {
     updateMovies.unshift(element);
     setMovies(updateMovies);
   };
-  const handleMouseOver = (e: React.MouseEvent<HTMLImageElement>) => {
-    e.currentTarget.style.opacity = "60%";
-    e.currentTarget.style.cursor = "pointer";
-    e.currentTarget.style.zIndex = "-2";
-    const url = e.currentTarget.dataset["url"];
-    if (backgroundDiv.current !== null) {
-      backgroundDiv.current.style.background = `no-repeat center/130% url(${url})`;
-    }
+
+  const handleMouseOver = (index: number) => {
+    setBackgroundUrl(movies[index].background_image);
+    setIsMouseOver((prev) => {
+      if (prev) {
+        const newArray = [...prev];
+        newArray[index] = true;
+        return newArray;
+      }
+    });
   };
-  const handleMouseOut = (e: React.MouseEvent<HTMLImageElement>) => {
-    e.currentTarget.style.opacity = "100%";
-    e.currentTarget.style.zIndex = "2";
-    if (backgroundDiv.current !== null) {
-      backgroundDiv.current.style.background = "none";
-    }
+  const handleMouseOut = (index: number) => {
+    setBackgroundUrl("");
+    setIsMouseOver((prev) => {
+      if (prev) {
+        const newArray = [...prev];
+        newArray[index] = false;
+        return newArray;
+      }
+    });
   };
 
   const [movies, setMovies] = useState<MovieData[]>([]);
   useEffect(() => {
     setMovies(props.movies);
+    setIsMouseOver(Array(props.movies.length).fill(false));
   }, [props.movies]);
   return (
-    <div className="carousel-wrap" ref={backgroundDiv}>
+    <div
+      className="carousel-wrap"
+      style={
+        backgroundUrl === ""
+          ? { background: "none" }
+          : { background: `no-repeat center/130% url(${backgroundUrl})` }
+      }
+    >
       <BiChevronLeftCircle onClick={handleLeftArrow} className="leftArrow" />
       <div className="carousel-container">
         <ul className="carousel">
@@ -70,9 +84,22 @@ const Carousel: React.FC<CarouselProps> = (props) => {
                 <li key={index} onClick={() => handleClick(movie)}>
                   <div className="movie-title">{movie.title}</div>
                   <img
+                    style={
+                      isMouseOver && isMouseOver[index]
+                        ? {
+                            opacity: "60%",
+                            cursor: "pointer",
+                            zIndex: "-2",
+                          }
+                        : {
+                            opacity: "100%",
+                            cursor: "pointer",
+                            zIndex: "2",
+                          }
+                    }
                     data-url={movie.background_image}
-                    onMouseOver={handleMouseOver}
-                    onMouseOut={handleMouseOut}
+                    onMouseOver={() => handleMouseOver(index)}
+                    onMouseOut={() => handleMouseOut(index)}
                     alt="poster"
                     src={movie.medium_cover_image}
                   />
