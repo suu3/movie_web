@@ -17,3 +17,7 @@ export interface MovieData {
   summary: string;
   description_full: string;
 }
+
+export type CommentListType = {
+  [key: string | number]: string;
+};

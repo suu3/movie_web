@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Carousel from "components/carousel";
+import Carousel from "components/home/carousel";
 import Loading from "components/loading";
 import { getMovies } from "API/data";
 import { MovieData } from "types/common";

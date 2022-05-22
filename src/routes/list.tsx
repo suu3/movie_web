@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import Movies from "components/movies";
+import Movies from "components/list/movies";
 import Loading from "components/loading";
-import PageNumber from "components/PageNumber";
+import PageNumber from "components/page-number";
 import { getMovies } from "API/data";
 import { MovieData } from "types/common";
 import "styles/list.scss";
 import { Animate } from "react-simple-animate";
 
-const List: React.FC = () => {
+const List = () => {
   const [play, setPlay] = useState<boolean>(false);
   const [movies, setMovies] = useState<MovieData[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
