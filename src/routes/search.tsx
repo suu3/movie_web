@@ -1,8 +1,9 @@
 import React, { useState, useRef } from "react";
-import "../css/search.scss";
+import "styles/search.scss";
 import { AiOutlineSearch } from "react-icons/ai";
-import { SearchData, searchMovies } from "../API/data";
-import Loading from "./loading";
+import { searchMovies } from "API/data";
+import { SearchData } from "types/common";
+import Loading from "components/loading";
 import { BiCalendarStar } from "react-icons/bi";
 
 const Search = () => {

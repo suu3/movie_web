@@ -1,5 +1,5 @@
 import React from "react";
-import "../css/header.scss";
+import "styles/header.scss";
 import styled from "styled-components";
 import { Link, useLocation } from "react-router-dom";
 import { AiFillHome, AiOutlineUnorderedList } from "react-icons/ai";
@@ -42,4 +42,4 @@ const Header: React.FC = () => {
   );
 };
 
-export default Header;
+export default React.memo(Header);

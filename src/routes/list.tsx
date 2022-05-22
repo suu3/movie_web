@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Movies from "./movies";
-import Loading from "./loading";
-import PageNumber from "./PageNumber";
-import { MovieData, getMovies } from "../API/data";
-import "../css/list.scss";
+import Movies from "components/movies";
+import Loading from "components/loading";
+import PageNumber from "components/PageNumber";
+import { getMovies } from "API/data";
+import { MovieData } from "types/common";
+import "styles/list.scss";
 import { Animate } from "react-simple-animate";
 
 const List: React.FC = () => {
@@ -16,7 +17,7 @@ const List: React.FC = () => {
     setLoading(false);
     setPlay(true);
   }
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState<number>(1);
   const handlePageChange = (page: number) => {
     setPage(page);
   };

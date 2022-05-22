@@ -1,7 +1,7 @@
 import React from "react";
-import { MovieData } from "../API/data";
+import { MovieData } from "types/common";
 import Movie from "./movie";
-import "../css/movies.scss";
+import "styles/movies.scss";
 
 interface MoviesProps {
   movies: MovieData[];

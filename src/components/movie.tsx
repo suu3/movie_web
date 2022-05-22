@@ -1,5 +1,5 @@
 import React from "react";
-import { MovieData } from "../API/data";
+import { MovieData } from "types/common";
 import { useNavigate } from "react-router-dom";
 import {
   AiFillStar,

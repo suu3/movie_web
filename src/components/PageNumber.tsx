@@ -1,4 +1,3 @@
-import React from "react";
 import Pagination from "react-js-pagination";
 import {
   AiOutlineDoubleLeft,
@@ -7,7 +6,13 @@ import {
   AiOutlineDoubleRight,
 } from "react-icons/ai";
 
-const PageNumber = (props) => {
+interface Props {
+  page: number;
+  length: number;
+  handlePageChange: (page: number) => void;
+}
+
+const PageNumber = (props: Props) => {
   return (
     <Pagination
       activePage={props.page}

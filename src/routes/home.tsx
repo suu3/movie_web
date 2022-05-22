@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Carousel from "./carousel";
-import Loading from "./loading";
-import { MovieData, getMovies } from "../API/data";
+import Carousel from "components/carousel";
+import Loading from "components/loading";
+import { getMovies } from "API/data";
+import { MovieData } from "types/common";
 
 const Home: React.FC = () => {
   const [movies, setMovies] = useState<MovieData[]>([]);

@@ -1,16 +1,5 @@
+import { SearchData, MovieData } from "types/common";
 import axios from "axios";
-
-export interface MovieData {
-  id: number;
-  title: string;
-  medium_cover_image: string;
-  background_image: string;
-  rating: number;
-  runtime: number;
-  genres: string[];
-  summary: string;
-  description_full: string;
-}
 
 export const getMovies = async (sortBy: string = "rating") => {
   const url = `https://yts-proxy.now.sh/list_movies.json?sort_by=${sortBy}`;
@@ -22,14 +11,6 @@ export const getMovies = async (sortBy: string = "rating") => {
     console.log(error);
   }
 };
-
-export interface SearchData {
-  rank: string;
-  movieNm: string;
-  openDt: string;
-  audiCnt: string;
-  salesAcc: string;
-}
 
 // export const searchMovies = async (search: string) => {
 //   const {

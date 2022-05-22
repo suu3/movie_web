@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import { MovieData } from "../API/data";
-import "../css/carousel.scss";
+import { MovieData } from "types/common";
+import "styles/carousel.scss";
 import { BiChevronLeftCircle, BiChevronRightCircle } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 
@@ -58,7 +58,7 @@ const Carousel: React.FC<CarouselProps> = (props) => {
   const [movies, setMovies] = useState<MovieData[]>([]);
   useEffect(() => {
     setMovies(props.movies);
-  }, []);
+  }, [props.movies]);
   return (
     <div className="carousel-wrap" ref={backgroundDiv}>
       <BiChevronLeftCircle onClick={handleLeftArrow} className="leftArrow" />
